@@ -14,7 +14,7 @@ services:
       - .:/app
     ports:
       - "8080:8080"
-    command: "tail -F anything"
+    command: "./scripts/docker/start.sh"
   
   etcd:
     image: elcolio/etcd

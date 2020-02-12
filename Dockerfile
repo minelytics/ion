@@ -69,5 +69,7 @@ COPY . /app
 WORKDIR /app/sdk/js
 RUN npm i
 
+WORKDIR /app
+RUN /app/scripts/makeKey.sh
 
 

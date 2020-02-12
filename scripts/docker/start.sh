@@ -150,8 +150,8 @@ cd $APP_DIR/sdk/js/demo
 npm i
 
 
-nohup npm start 2>&1& echo $! > $APP_DIR/configs/node.pid
-echo "start web ok"
+nohup npm start 2>&1 echo $! > $APP_DIR/configs/node.pid
+
 
 
 
