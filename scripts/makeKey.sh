@@ -9,6 +9,6 @@ echo "****************************************"
 echo -e "\n"
 mv $PATH/key.pem $PATH/key.pem.bak.`/bin/date +%Y%m%d%H%M%S` 2>/dev/null
 mv $PATH/cert.pem $PATH/cert.pem.bak.`/bin/date +%Y%m%d%H%M%S` 2>/dev/null
-/usr/bin/openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout $PATH/key.pem -out $PATH/cert.pem
+/usr/bin/openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout $PATH/key.pem -out $PATH/cert.pem -subj "/C=GB/ST=London/L=London/O=PION/OU=ION/CN=pion.ly"
 echo 'build ok'
 

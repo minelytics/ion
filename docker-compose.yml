@@ -1,0 +1,42 @@
+version: '3.2'
+
+
+services:
+  ion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pion/ion
+    depends_on:
+      - redis
+      - rabbitmq
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: "tail -F anything"
+  
+  etcd:
+    image: elcolio/etcd
+    # Mount host directory to provide persistent storage to etcd
+    # volumes:
+    #  - /opt/etcd:/data
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+      - "4001:4001"
+      - "7001:7001"
+  
+  redis:
+    image: redis
+    # Mount host directory to provide persistent storage to redis
+    # volumes:
+    #  - /opt/redis:/data
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
