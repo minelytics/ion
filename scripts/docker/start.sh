@@ -4,6 +4,7 @@ APP_DIR=$(cd `dirname $0`/../../; pwd)
 cd $APP_DIR
 mkdir -p $APP_DIR/logs
 
+export GOOS=linux
 
 ISLB_PID_FILE=$APP_DIR/configs/islb.pid  #pid file, default: worker.pid
 
@@ -150,7 +151,7 @@ cd $APP_DIR/sdk/js/demo
 npm i
 
 
-nohup npm start 2>&1 echo $! > $APP_DIR/configs/node.pid
+nohup npm start 2>&1& echo $! > $APP_DIR/configs/node.pid
 
 
 
