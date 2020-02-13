@@ -58,18 +58,20 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 
 # node
-RUN apt-get update && apt-get install -y nodejs-legacy npm 
+RUN apt-get update && apt-get install -y nodejs npm 
 RUN npm install -g n
 RUN n stable 
-
-RUN npm config set registry http://registry.cnpmjs.org/
 
 COPY . /app
 
 WORKDIR /app/sdk/js
 RUN npm i
 
+WORKDIR /app/sdk/js/demo
+RUN npm i
+
 WORKDIR /app
-RUN /app/scripts/makeKey.sh
+RUN /usr/bin/openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout /app/config/key.pem -out /app/config/cert.pem -subj "/C=GB/ST=London/L=London/O=PION/OU=ION/CN=pion.ly"
+
 
 
